@@ -6,14 +6,17 @@ BACKGROUND_COLOR = "#B1DDC6"
 eng = ""
 esp = ""
 
-data = pandas.read_csv("data/spanish_words.csv") 
-data_dict = data.to_dict(orient="records")
-# print(data_dict[5]["ES"])
+try: 
+    data = pandas.read_csv("data/words_to_learn.csv") 
+    data_dict = data.to_dict(orient="records")
+except: 
+    data = pandas.read_csv("data/spanish_words.csv") 
+    data_dict = data.to_dict(orient="records")
 
 # random selecting a card
 def nextcard():
     global eng, esp
-    index = randint(0, 499)
+    index = randint(0, len(data_dict)-1)
     eng = data_dict[index]["EN"]
     esp = data_dict[index]["ES"]
     canvas.itemconfig(canvas_image, image=frontimage)
@@ -26,6 +29,13 @@ def flipcard():
     canvas.itemconfig(canvas_image, image=backimage)
     canvas.itemconfig(card_title, text="English", fill="white")
     canvas.itemconfig(card_word, text=eng, fill="white")
+
+def greenflow():
+    data_dict.remove({'ES': esp, 'EN': eng})
+    print(len(data_dict))
+    export = pandas.DataFrame.from_records(data_dict)
+    export.to_csv("data/words_to_learn.csv", index=False)
+    nextcard()
 
 # GUI setup
 window = Tk()
@@ -44,7 +54,7 @@ no = Button(image=redno, highlightthickness=0, command=nextcard)
 no.grid(row=1, column=0)
 
 greenyes = PhotoImage(file="images/right.png")
-yes = Button(image=greenyes, highlightthickness=0, command=nextcard)
+yes = Button(image=greenyes, highlightthickness=0, command=greenflow)
 yes.grid(row=1, column=1)
 
 nextcard()
