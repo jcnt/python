@@ -20,7 +20,8 @@ class QuizBrain:
             user_answer = "true"
         if user_answer == "f":
             user_answer = "false"
-        self.check_answer(user_answer)
+#         self.check_answer(user_answer) -> we don't need this on the GUI
+        return f"Q.{self.question_number}: {q_text}"
 
     def check_answer(self, user_answer):
         correct_answer = self.current_question.answer
