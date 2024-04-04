@@ -9,7 +9,7 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
     ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
 # When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 
-with open("alphavantage.token") as file: 
+with open("stock.token") as file: 
     stock_token = file.readline().rstrip()
 
 stock_params = {
@@ -46,12 +46,6 @@ pct_change = (diff_days / yesterday_close) * 100
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
-
-if pct_change > 5: 
-    pass
-
-#TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
-
 with open("newsapi.token") as file: 
     news_token = file.readline().rstrip()
 
@@ -61,26 +55,32 @@ news_params = {
     "language": "en"
 }
 
-news_result = requests.get(url=NEWS_ENDPOINT, params=news_params, verify=False)
+if pct_change > 1: 
+    
+
+#TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+
+
+    news_result = requests.get(url=NEWS_ENDPOINT, params=news_params, verify=False)
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
-news = news_result.json()["articles"][0:3]
+    news = news_result.json()["articles"][0:3]
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
-news_simple = [f"Headline: {article['title']},\n Brief: {article['description']}" for article in news ]
+    news_simple = [f"Headline: {article['title']},\n Brief: {article['description']}" for article in news ]
 # -> how this works: 
 # item for item in list: 
 # list is the news we get from API
 # there are 3 items in that list, we call them "article"
 # we need the article.something and article.something for every article
 
-for i in news_simple: 
-    print(i)
+    for i in news_simple: 
+        print(i)
 
 
 #TODO 9. - Send each article as a separate message via Twilio. 
