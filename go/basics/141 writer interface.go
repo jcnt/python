@@ -5,14 +5,7 @@ import (
 	"os"
 )
 
-//type person struct {
-//	first string
-//}
-//
-//func (p person) writeOut(w io.Writer) {
-//	_, err := w.Write([]byte(p.first))
-//	return err
-//}
+
 
 func main() {
 	f, err := os.Create("141output.txt")
