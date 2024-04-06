@@ -1,7 +1,7 @@
 import requests
+from os import environ
 
-with open("token.txt") as file: 
-    APIKEY=file.readline().rstrip()
+APIKEY= environ["TOKEN"]
 
 params = {
     "lat": 59.913868,

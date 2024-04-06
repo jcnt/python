@@ -1,4 +1,5 @@
 import requests
+from os import environ
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -9,8 +10,7 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
     ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
 # When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 
-with open("stock.token") as file: 
-    stock_token = file.readline().rstrip()
+stock_token = environ["STOCKAPI"]
 
 stock_params = {
     "function": "TIME_SERIES_DAILY",
@@ -46,8 +46,7 @@ pct_change = (diff_days / yesterday_close) * 100
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
-with open("newsapi.token") as file: 
-    news_token = file.readline().rstrip()
+news_token = environ["NEWSAPI"]
 
 news_params = {
     "apiKey": news_token,

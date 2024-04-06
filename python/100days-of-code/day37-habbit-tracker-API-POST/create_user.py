@@ -1,7 +1,7 @@
 import requests
+from os import environ
 
-with open("token.txt") as file: 
-    TOKEN = file.readline().rstrip()
+TOKEN = environ["TOKEN"]
 
 USER = "jac1nt"
 
