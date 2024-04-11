@@ -15,8 +15,10 @@ for i in sheet_data:
         sheet.update_iata(iata, i['id'])
 
 for i in sheet_data:
-    hit = search.flight_search(i['iataCode'])
+    hit = search.flight_search(i['iataCode'], i['maxstop'])
+    if hit[4] < i["lowestPrice"]:
+        leave = hit[5].split("T")[0]
+        back = hit[6].split("T")[0]
+        message = notification_manager.NotificationManager()
+        message.sendtext(f"Deal!! {hit[0]} -> {hit[2]}: {hit[4]} EUR. {leave} -> {back}")
 
-
-message = notification_manager.NotificationManager()
-message.sendtext(hit)

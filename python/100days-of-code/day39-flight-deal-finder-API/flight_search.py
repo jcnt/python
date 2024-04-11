@@ -32,7 +32,7 @@ class FlightSearch:
         return data.json()["locations"][0]['code']
 
 
-    def flight_search(self, destination):
+    def flight_search(self, destination, maxstop):
 
         hit = []
 
@@ -45,7 +45,7 @@ class FlightSearch:
             "nights_in_dst_to": 5, 
             'curr': "EUR",
 #             'price_to': 650,
-            'max_stopovers': 2,
+            'max_stopovers': maxstop,
             'stopover_to': '6:00',
             'sort': 'price',
 
