@@ -35,10 +35,22 @@ import (
 func main() {
 	// TYPE YOUR CODE HERE
 
-	fmt.Println("There are", len(os.Args) - 1, "people")
-	fmt.Println("Hello great", os.Args[1],"!")
-	fmt.Println("Hello great", os.Args[2],"!")
-	fmt.Println("Hello great", os.Args[3],"!")
+	var (
+		l int;
+		n1 string;
+		n2 string;
+		n3 string;
+	)
+
+	l=len(os.Args)-1
+	n1=os.Args[1]
+	n2=os.Args[2]
+	n3=os.Args[3]
+
+	fmt.Println("There are", l, "people")
+	fmt.Println("Hello great", n1,"!")
+	fmt.Println("Hello great", n2,"!")
+	fmt.Println("Hello great", n3,"!")
 	fmt.Println("Nice to meet you all!")
 
 	// BONUS #1:
