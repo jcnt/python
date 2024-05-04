@@ -21,6 +21,6 @@ func main(){
 	case "sep", "oct", "nov":
 		fmt.Println("fall")
 	default:
-		fmt.Printf("%q is not a month\n")
+		fmt.Printf("%q is not a month\n", m)
 	}
 }
