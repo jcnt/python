@@ -1,10 +1,11 @@
 import time
+
 def delay_decorator(function):
     def wrapper_function():
-        time.sleep(2)
+        time.sleep(1)
         function()
         print("I'm inside running the function one more time")
-        time.sleep(2)
+        time.sleep(1)
         function()
     return wrapper_function
 
