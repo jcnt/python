@@ -10,6 +10,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -65,7 +66,17 @@ Istanbul,500,10,5,1000000`
 	fmt.Println()
 	fmt.Println(strings.Repeat("=", 65))
 
+	var as, ab, at, ap float64
 	for _,v := range d {
-		fmt.Printf("%v, %t", v[1], v[1])
+		w := strings.Split(v, separator)
+		x,_ := strconv.ParseFloat(w[1], 64)
+		as += x
+		y,_ := strconv.ParseFloat(w[2], 64)
+		ab += y
+		z,_ := strconv.ParseFloat(w[3], 64)
+		at += z
+		u,_ := strconv.ParseFloat(w[4], 64)
+		ap += u
 	}
+	fmt.Printf("%-15s%-15.2f%-15.2f%-15.2f%-15.2f\n", "Average: ", as/float64(len(d)), ab/float64(len(d)), at/float64(len(d)), ap/float64(len(d)) )
 }
