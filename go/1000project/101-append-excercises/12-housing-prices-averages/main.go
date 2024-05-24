@@ -42,7 +42,8 @@ func main() {
 		data   = `New York,100,2,1,100000
 New York,150,3,2,200000
 Paris,200,4,3,400000
-Istanbul,500,10,5,1000000`
+Istanbul,500,10,5,1000000
+Budapest,200,5,2,100000`
 
 		separator = ","
 	)
