@@ -22,7 +22,7 @@ func main() {
 	// --- #1 ---
 	// 1. create a new slice named: games
 
-	games1 := []string{}
+	var games1 []string
 	
 	// 2. print the length and capacity of the games slice
 
@@ -39,17 +39,23 @@ func main() {
 	
 	// 5. append the elements: "pacman", "mario", "tetris", "doom"
 
-	append(games2, "pacman", "mario", "tetris", "doom")
+	games2 = append(games2, "pacman", "mario", "tetris", "doom")
 	
 	// 6. print the length and capacity of the games slice
-	//
+	
+	fmt.Printf("The length of the slice is %d and the capacity is %d\n", len(games2), cap(games2))
+
 	// 7. comment out everything
 	//
 	// 8. declare the games slice again using a slice literal
 	//    (use the same elements from step 5)
 
+	games3 := []string{"pacman", "mario", "tetris", "doom"}  
+
 	// --- #2 ---
 	// 1. use a loop from 0 to 4 to slice the games slice, element by element.
+
+	
 	//
 	// 2. print its length and capacity along the way (in the loop).
 
