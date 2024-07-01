@@ -73,6 +73,13 @@ func main() {
 	// ...
 	// s.Show("3rd step", names)
 
+	clone := make([]string, 3, 5)
+	fmt.Println(clone)
+	fmt.Printf("clone slice length is %d capacity is %d\n", len(clone), cap(clone))
+	copy(clone, names[len(names)-3:])
+	fmt.Println(clone)
+	fmt.Printf("clone slice length is %d capacity is %d\n", len(clone), cap(clone))
+
 	// ########################################################
 	//
 	// #4: Copy only the first two elements of the following
@@ -85,7 +92,14 @@ func main() {
 	//
 	//
 	// Array (uncomment):
-	// moreNames := [...]string{"plato", "khayyam", "ptolemy"}
+	moreNames := [...]string{"plato", "khayyam", "ptolemy"}
+	copy(names[3:5], moreNames[:2])
+	names = names[:cap(names)]
+	fmt.Println(names)
+	fmt.Printf("names slice length is %d capacity is %d\n", len(names), cap(names))
+	for i,v := range(names) {
+		fmt.Printf("%d:\t%s\n", i, v)
+	}
 	//
 	// ...
 	//
