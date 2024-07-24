@@ -133,7 +133,7 @@ func main() {
 	fmt.Printf("The size of array1 is %d bytes\n", unsafe.Sizeof(array1))
 	fmt.Printf("The size of array2 is %d bytes\n", unsafe.Sizeof(array2))
 	fmt.Printf("The size of slice1 is %d bytes\n", unsafe.Sizeof(slice1))
-	
+
 }
 
 // passes [size]int array — about 80MB!

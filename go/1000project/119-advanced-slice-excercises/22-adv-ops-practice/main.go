@@ -109,9 +109,16 @@ func main() {
 	//
 	// #5:  Only copy the last 3 elements of the `names` slice
 	//      to a new slice: `clone`.
+
+	clone2 := names[len(names)-3:]
+	fmt.Println(clone2)
+	
 	//
 	//     Append the first two elements of the `names` to the
 	//    `clone`.
+
+	clone2 = append(clone2, names[0:2]...)
+	fmt.Println(clone2)
 	//
 	//     Ensure that after appending no new backing array
 	//     allocations occur for the `clone` slice.
@@ -129,16 +136,25 @@ func main() {
 	//
 	// #6: Slice the `clone` slice between 2nd and 4th (inclusive)
 	//     elements into a new slice: `sliced`.
+
+	sliced := clone[1:3]
+	fmt.Println(sliced)
 	//
 	//     Append "hypatia" to the `sliced`.
+
+	sliced = append(sliced, "hypatia")
+	fmt.Println(sliced)
 	//
 	//     Ensure that new backing array allocation "occurs".
 	//
 	//       Change the 3rd element of the `clone` slice
 	//       to "elder".
+	clone[2] = "elder"
 	//
 	//       Doing so should not change any elements of
 	//       the `sliced` slice.
+	fmt.Println(clone)
+	fmt.Println(sliced)
 	//
 	//     Print the `clone` and `sliced` slices.
 	//

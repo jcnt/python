@@ -1,6 +1,6 @@
-import pandas
+import pandas as pd
 
-squirrel = pandas.read_csv("NYC_Squirrel_Data_20240225.csv")
+squirrel = pd.read_csv("NYC_Squirrel_Data_20240225.csv")
 color = squirrel["Primary Fur Color"]
 
 gray_sq_count = len(squirrel[squirrel["Primary Fur Color"] == "Gray"])
@@ -29,8 +29,8 @@ nycsqr2 = {
     "colors": ["Grey", "Black", "Red"],
     "amount": [gray_sq_count, black_sq_count, red_sq_count]
 }
-sqrfmt = pandas.DataFrame(nycsqr)
-sqrfmt2 = pandas.DataFrame(nycsqr2)
+sqrfmt = pd.DataFrame(nycsqr)
+sqrfmt2 = pd.DataFrame(nycsqr2)
 sqrfmt.to_csv("squirrel_colors.csv")
 print(sqrfmt)
 print(sqrfmt2)
