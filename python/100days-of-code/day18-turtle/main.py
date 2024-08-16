@@ -1,17 +1,17 @@
 import turtle
-from random import *
+from random import randint
 
 turtle.colormode(255)
 timmy = turtle.Turtle()
 timmy.shape("turtle")
 timmy.color("red")
 
-#for i in range(20):
+# for i in range(20):
 #    timmy.pendown()
 #    timmy.forward(10)
 #    timmy.penup()
 #    timmy.forward(10)
-turn = [ 30, 45, 60, 90 ]
+turn = [30, 45, 60, 90]
 length = [20, 40, 60]
 direction = ["right", "left"]
 timmy.pensize(1)
@@ -22,10 +22,10 @@ def random_color():
     r = randint(0, 255)
     g = randint(0, 255)
     b = randint(0, 255)
-    return(r, g, b)
+    return (r, g, b)
 
 
-#for i in range(50):
+# for i in range(50):
 #    tup = (random_color())
 #    timmy.pencolor(tup)
 #    dir = choice(direction)
@@ -39,8 +39,6 @@ for i in range(120):
     timmy.color(randint(0, 255), randint(0, 255), randint(0, 255))
     timmy.circle(100)
     timmy.left(3)
-
-
 
 
 screen = turtle.Screen()
