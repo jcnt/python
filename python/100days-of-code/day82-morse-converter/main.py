@@ -4,7 +4,7 @@
 import csv
 import os
 
-with open("morse.csv", newline="") as file:
+with open("morse.csv", newline="", mode="r", encoding="UTF8") as file:
     data = csv.reader(file)
     #     morse = list(data)    # this would do a list of lists
     abcmorse = {rows[0]: rows[1] for rows in data}
