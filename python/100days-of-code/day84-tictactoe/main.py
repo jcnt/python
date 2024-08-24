@@ -56,12 +56,12 @@ while running:
     col = input("Column (1/2/3) ")
 
     if row == "" or col == "":
-        print("Try again! Wrong row or column...")
+        print("Try again! Wrong row or column.")
         time.sleep(3)
     else:
         ind = int(col) - 1
         if eval(row)[ind] != " ":
-            print("Try again! That field is already used...")
+            print("Try again! That field is already used.")
             time.sleep(3)
         else:
             eval(row)[ind] = mark
