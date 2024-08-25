@@ -1,3 +1,6 @@
+# assignment porgram for python scripting
+# Day 84: write a CLI version of the Tic Tac Toe game
+
 import os
 import time
 
