@@ -9,7 +9,7 @@ chcounter = 0
 
 
 def get_text():
-    with open("alice_in_wonderland.txt") as text:
+    with open("alice_in_wonderland.txt", "r") as text:
         lines = text.readlines()
         text = ""
         start = rnd.randint(1, 180)
@@ -29,7 +29,8 @@ def count_down(count):
         char_label.config(text=f"Characters: {chcounter}")
     else:
         text_label.config(
-            text=f"Congratulations!\nYou typed {chcounter} characters in 60 seconds! ",
+            text=f"""Congratulations!\n
+            You typed {chcounter} characters in 60 seconds!""",
             font=("Arial", 14, "bold"),
         )
 
@@ -48,7 +49,9 @@ window.config(padx=50, pady=50)
 
 
 text_label = tk.Label(
-    text="Rules: Simple, click on START and you'll get a text. You have 60 seconds. Type as much as you can!",
+    text="""Rules: Simple, click on START and you'll get a text.
+
+    You have 60 seconds. Type as much as you can!""",
     width=100,
     height=25,
 )
@@ -62,8 +65,8 @@ typespace.grid(row=1, column=0, columnspan=3)
 char_label = tk.Label(text=f"Characters: {chcounter}")
 char_label.grid(row=2, column=0)
 
-start = tk.Button(text="START", command=game_start)
-start.grid(row=2, column=1)
+start_btn = tk.Button(text="START", command=game_start)
+start_btn.grid(row=2, column=1)
 
 time_label = tk.Label(text=f"Time remaining: {time_sec} sec")
 time_label.grid(row=2, column=2)
