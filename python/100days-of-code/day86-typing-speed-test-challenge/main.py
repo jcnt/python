@@ -2,7 +2,6 @@
 # Day 85: write a GUI program to test typing speed of the player
 #
 import random as rnd
-import time
 import tkinter as tk
 
 time_sec = 60
