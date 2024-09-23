@@ -47,7 +47,6 @@ window.title("Typing Speed Tester")
 window.minsize(height=700, width=1000)
 window.config(padx=50, pady=50)
 
-
 text_label = tk.Label(
     text="""Rules: Simple, click on START and you'll get a text.
 
