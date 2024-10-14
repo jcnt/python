@@ -49,29 +49,40 @@ def arg_w(stdin):
     return w
 
 
-stdinput = readstdin()
-
 if len(sys.argv) == 1:
+    stdinput = readstdin()
     print(
         f"      {arg_l(stdinput)}\
      {arg_w(stdinput)}\
     {arg_c(stdinput)}"
     )
 
-elif sys.argv[1] == "-l":
-    print(f"      {arg_l(stdinput)}")
+if len(sys.argv) == 2:
+    if sys.argv[1] == "-l":
+        stdinput = readstdin()
+        print(f"      {arg_l(stdinput)}")
 
-elif sys.argv[1] == "-c":
-    print(f"      {arg_c(stdinput)}")
+    elif sys.argv[1] == "-c":
+        stdinput = readstdin()
+        print(f"      {arg_c(stdinput)}")
 
-elif sys.argv[1] == "-w":
-    print(f"     {arg_w(stdinput)}")
+    elif sys.argv[1] == "-w":
+        stdinput = readstdin()
+        print(f"     {arg_w(stdinput)}")
 
-elif sys.argv[1] == "-m":
-    print("-m")
+    elif sys.argv[1] == "-m":
+        stdinput = readstdin()
+        print("-m")
 
-elif sys.argv[1] == "-ll":
-    print("-ll")
+    elif sys.argv[1] == "-ll":
+        stdinput = readstdin()
+        print("-ll")
 
-else:
-    print("parameter is a file")
+    else:
+        with open(sys.argv[1], "r") as file:
+            stdinput = file.readlines()
+        print(
+            f"      {arg_l(stdinput)}\
+     {arg_w(stdinput)}\
+    {arg_c(stdinput)} {sys.argv[1]}"
+        )
