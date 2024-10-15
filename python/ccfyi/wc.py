@@ -82,7 +82,7 @@ if len(sys.argv) == 2:
     else:
         with open(sys.argv[1], "r", encoding="UTF8") as file:
             stdinput = file.readlines()
-        """Indenting is off for print to get execlty the same output as wc"""
+        # Indenting is off for print to get execlty the same output as wc
         print(
             f"      {arg_l(stdinput)}\
      {arg_w(stdinput)}\
