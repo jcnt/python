@@ -8,7 +8,7 @@ write a program that does the same as the unix "wc"
 import sys
 
 
-def readstdin():
+def read_stdin():
     """read stdin and return as a list"""
     stdin = []
     for line in sys.stdin:
@@ -16,12 +16,10 @@ def readstdin():
     return stdin
 
 
-def filetostdin():
-    pass
-
-
-def arg_ll():
-    pass
+def arg_ll(stdin):
+    """provide the longest line within the input"""
+    stdin_max = max(stdin)
+    return len(stdin_max.encode("utf-8"))
 
 
 def arg_c(stdin):
@@ -37,8 +35,11 @@ def arg_l(stdin):
     return len(stdin)
 
 
-def arg_m():
-    pass
+def arg_m(stdin):
+    m = 0
+    for _, line in enumerate(stdin):
+        m += len(line.encode("utf-8"))
+    return m
 
 
 def arg_w(stdin):
@@ -50,7 +51,7 @@ def arg_w(stdin):
 
 
 if len(sys.argv) == 1:
-    stdinput = readstdin()
+    stdinput = read_stdin()
     print(
         f"      {arg_l(stdinput)}\
      {arg_w(stdinput)}\
@@ -59,28 +60,29 @@ if len(sys.argv) == 1:
 
 if len(sys.argv) == 2:
     if sys.argv[1] == "-l":
-        stdinput = readstdin()
+        stdinput = read_stdin()
         print(f"      {arg_l(stdinput)}")
 
     elif sys.argv[1] == "-c":
-        stdinput = readstdin()
-        print(f"      {arg_c(stdinput)}")
+        stdinput = read_stdin()
+        print(f"    {arg_c(stdinput)}")
 
     elif sys.argv[1] == "-w":
-        stdinput = readstdin()
+        stdinput = read_stdin()
         print(f"     {arg_w(stdinput)}")
 
     elif sys.argv[1] == "-m":
-        stdinput = readstdin()
-        print("-m")
+        stdinput = read_stdin()
+        print(f"    {arg_m(stdinput)}")
 
-    elif sys.argv[1] == "-ll":
-        stdinput = readstdin()
-        print("-ll")
+    elif sys.argv[1] == "-L":
+        stdinput = read_stdin()
+        print(f"     {arg_ll(stdinput)}")
 
     else:
-        with open(sys.argv[1], "r") as file:
+        with open(sys.argv[1], "r", encoding="UTF8") as file:
             stdinput = file.readlines()
+        """Indenting is off for print to get execlty the same output as wc"""
         print(
             f"      {arg_l(stdinput)}\
      {arg_w(stdinput)}\
