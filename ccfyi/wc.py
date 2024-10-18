@@ -36,6 +36,7 @@ def arg_l(stdin):
 
 
 def arg_m(stdin):
+    """count the number of the bytes of stdin"""
     m = 0
     for _, line in enumerate(stdin):
         m += len(line.encode("utf-8"))
