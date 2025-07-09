@@ -25,7 +25,7 @@ def arg_ll(stdin):
 def arg_c(stdin):
     """count the number of the characters of stdin"""
     c = 0
-    for _, line in enumerate(stdin):
+    for line in stdin:
         c += len(line)
     return c
 
@@ -38,7 +38,7 @@ def arg_l(stdin):
 def arg_m(stdin):
     """count the number of the bytes of stdin"""
     m = 0
-    for _, line in enumerate(stdin):
+    for line in stdin:
         m += len(line.encode("utf-8"))
     return m
 
@@ -46,7 +46,7 @@ def arg_m(stdin):
 def arg_w(stdin):
     """count the number of the words of stdin"""
     w = 0
-    for _, line in enumerate(stdin):
+    for line in stdin:
         w += len(line.split())
     return w
 
