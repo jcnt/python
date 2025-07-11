@@ -18,14 +18,17 @@ def read_stdin():
 
 
 def noarg():
+    """No argument, default run, head -n 10"""
     print("noarg")
 
 
 def argn():
+    """-n count, Print count lines of each of the specified files."""
     print("argn")
 
 
 def argc():
+    """-c bytes, Print bytes of each of the specified files."""
     print("argc")
 
 
