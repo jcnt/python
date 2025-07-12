@@ -6,20 +6,20 @@ write a program that does the same as the unix "head"
 """
 
 import sys
-from os import walk
 
 
 def read_stdin():
     """read stdin and return as a list"""
     stdin = []
-    for line in sys.stdin:
+    for line in sys.stdin.read().splitlines():
         stdin.append(line)
     return stdin
 
 
-def noarg():
+def noarg(s):
     """No argument, default run, head -n 10"""
-    print("noarg")
+    for line in range(10):
+        print(s[line])
 
 
 def argn():
@@ -33,21 +33,27 @@ def argc():
 
 
 print(len(sys.argv))
-print(sys.argv[0])
+print("====================\n")
 
-# 1 -> piped into
-# 2 -> no arg just filename
+stdinput = read_stdin()
+
 
 if len(sys.argv) == 1:
-    print("1")
     # no arg, piped, head -10
+    noarg(stdinput)
 
 if len(sys.argv) == 2:
     print("2")
     # head filename
     # or
-    # head -arg piped
+    # head -10 piped
 
 if len(sys.argv) == 3:
     print("3")
-    # head -arg filename
+    # head -10 filename
+    # or
+    # head -n 10 piped
+
+if len(sys.argv) == 4:
+    print("4")
+    # head -n 10 filename
