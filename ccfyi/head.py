@@ -5,6 +5,7 @@ head.py
 write a program that does the same as the unix "head"
 """
 
+import os
 import sys
 
 
@@ -14,6 +15,13 @@ def read_stdin():
     for line in sys.stdin.read().splitlines():
         stdin.append(line)
     return stdin
+
+
+def read_file(f):
+    flist = []
+    with open(f) as file:
+        flist.append(file.read().splitlines())
+    return flist
 
 
 def noarg(s):
@@ -32,18 +40,24 @@ def argc():
     print("argc")
 
 
-print(len(sys.argv))
+print("====================")
+print("remove this part")
+print(sys.argv)
 print("====================\n")
-
-stdinput = read_stdin()
 
 
 if len(sys.argv) == 1:
     # no arg, piped, head -10
+    stdinput = read_stdin()
     noarg(stdinput)
 
 if len(sys.argv) == 2:
-    print("2")
+    arg = sys.argv[1]
+    if os.path.exists(arg):
+        finput = read_file(arg)
+        noarg(finput)
+    else:
+        print("probably an arg")
     # head filename
     # or
     # head -10 piped
