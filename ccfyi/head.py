@@ -18,9 +18,8 @@ def read_stdin():
 
 
 def read_file(f):
-    flist = []
     with open(f) as file:
-        flist.append(file.read().splitlines())
+        flist = file.read().splitlines()
     return flist
 
 
