@@ -29,9 +29,10 @@ def noarg(s):
         print(s[line])
 
 
-def argn():
+def argn(s, n):
     """-n count, Print count lines of each of the specified files."""
-    print("argn")
+    for line in range(n):
+        print(s[line])
 
 
 def argc():
@@ -51,22 +52,35 @@ if len(sys.argv) == 1:
     noarg(stdinput)
 
 if len(sys.argv) == 2:
-    arg = sys.argv[1]
-    if os.path.exists(arg):
-        finput = read_file(arg)
+    f = sys.argv[1]
+    if os.path.exists(f):
+        finput = read_file(f)
         noarg(finput)
     else:
-        print("probably an arg")
-    # head filename
-    # or
-    # head -10 piped
+        narg = int(sys.argv[1][1:])
+        stdinput = read_stdin()
+        argn(stdinput, narg)
 
 if len(sys.argv) == 3:
-    print("3")
-    # head -10 filename
-    # or
-    # head -n 10 piped
+    f = sys.argv[2]
+    if os.path.exists(f):
+        finput = read_file(f)
+        narg = int(sys.argv[1][1:])
+        argn(finput, narg)
+    else:
+        stdinput = read_stdin()
+        if sys.argv[1] == "-n":
+            argn(stdinput, int(sys.argv[2]))
+        elif sys.argv[1] == "-c":
+            print("c")
+        else:
+            print("need usage info here")
 
 if len(sys.argv) == 4:
     print("4")
     # head -n 10 filename
+
+
+"""TODO: 
+- with -10 in == 2 need to evaluate if the string coming after - is convertable to int
+"""
