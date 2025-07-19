@@ -52,6 +52,7 @@ if len(sys.argv) == 1:
     noarg(stdinput)
 
 if len(sys.argv) == 2:
+    # head filename or head -10 pipe
     f = sys.argv[1]
     if os.path.exists(f):
         finput = read_file(f)
@@ -62,6 +63,7 @@ if len(sys.argv) == 2:
         argn(stdinput, narg)
 
 if len(sys.argv) == 3:
+    # head -10 filename or head -n 10 pipe
     f = sys.argv[2]
     if os.path.exists(f):
         finput = read_file(f)
@@ -77,9 +79,18 @@ if len(sys.argv) == 3:
             print("need usage info here")
 
 if len(sys.argv) == 4:
-    print("4")
-    # head -n 10 filename
-
+    f = sys.argv[3]
+    if os.path.exists(f):
+        # head -n 10 filename
+        if sys.argv[1] == "-n":
+            # -n
+            finput = read_file(f)
+            argn(finput, int(sys.argv[2]))
+        elif sys.argv[1] == "-c":
+            # -c
+            ...
+        else:
+            print("need usage info here")
 
 """TODO: 
 - with -10 in == 2 need to evaluate if the string coming after - is convertable to int
