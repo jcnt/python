@@ -74,24 +74,28 @@ if len(sys.argv) == 3:
         if sys.argv[1] == "-n":
             argn(stdinput, int(sys.argv[2]))
         elif sys.argv[1] == "-c":
-            print("c")
+            argc()
         else:
             print("need usage info here")
 
 if len(sys.argv) == 4:
     f = sys.argv[3]
     if os.path.exists(f):
-        # head -n 10 filename
-        if sys.argv[1] == "-n":
-            # -n
-            finput = read_file(f)
-            argn(finput, int(sys.argv[2]))
-        elif sys.argv[1] == "-c":
-            # -c
-            ...
+        n = sys.argv[2]
+        if str.isdigit(n):
+            # head -n 10 filename
+            if sys.argv[1] == "-n":
+                # -n
+                finput = read_file(f)
+                argn(finput, int(n))
+            elif sys.argv[1] == "-c":
+                # -c
+                argc()
+            else:
+                print("need usage info here")
         else:
-            print("need usage info here")
+            print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
 
-"""TODO: 
-- with -10 in == 2 need to evaluate if the string coming after - is convertable to int
+"""TODO:
+- with -10 -> str.isdigit()
 """
