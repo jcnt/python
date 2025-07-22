@@ -58,21 +58,28 @@ if len(sys.argv) == 2:
         finput = read_file(f)
         noarg(finput)
     else:
-        narg = int(sys.argv[1][1:])
-        stdinput = read_stdin()
-        argn(stdinput, narg)
+        if str.isdigit(sys.argv[1][1:]):
+            stdinput = read_stdin()
+            argn(stdinput, int(sys.argv[1][1:]))
+        else:
+            print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
 
 if len(sys.argv) == 3:
     # head -10 filename or head -n 10 pipe
     f = sys.argv[2]
     if os.path.exists(f):
         finput = read_file(f)
-        narg = int(sys.argv[1][1:])
-        argn(finput, narg)
+        if str.isdigit(sys.argv[1][1:]):
+            argn(finput, int(sys.argv[1][1:]))
+        else:
+            print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
     else:
         stdinput = read_stdin()
         if sys.argv[1] == "-n":
-            argn(stdinput, int(sys.argv[2]))
+            if str.isdigit(sys.argv[2]):
+                argn(stdinput, int(sys.argv[2]))
+            else:
+                print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
         elif sys.argv[1] == "-c":
             argc()
         else:
@@ -95,7 +102,3 @@ if len(sys.argv) == 4:
                 print("need usage info here")
         else:
             print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
-
-"""TODO:
-- with -10 -> str.isdigit()
-"""
