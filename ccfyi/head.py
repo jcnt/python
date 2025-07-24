@@ -18,6 +18,7 @@ def read_stdin():
 
 
 def read_file(f):
+    """open file and return as a list"""
     with open(f) as file:
         flist = file.read().splitlines()
     return flist
