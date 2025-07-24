@@ -88,27 +88,32 @@ if len(sys.argv) == 3:
             if str.isdigit(sys.argv[2]):
                 argc(stdinput, int(sys.argv[2]))
             else:
-                print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
+                print(f"{sys.argv[0]}: illegal byte count -- {sys.argv[2]}")
         else:
             print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
             print("usage: head [-n lines | -c bytes] [file ...]")
 
 if len(sys.argv) == 4:
+    # head -n 10 filename
     f = sys.argv[3]
     if os.path.exists(f):
         n = sys.argv[2]
-        if str.isdigit(n):
-            # head -n 10 filename
-            if sys.argv[1] == "-n":
-                # -n
-                finput = read_file(f)
+        finput = read_file(f)
+        # head -n 10 filename
+        if sys.argv[1] == "-n":
+            # -n
+            if str.isdigit(n):
                 argn(finput, int(n))
-            elif sys.argv[1] == "-c":
-                # -c
-                finput = read_file(f)
+            else:
+                print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
+        elif sys.argv[1] == "-c":
+            # -c
+            if str.isdigit(n):
                 argc(finput, int(n))
             else:
-                print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
-                print("usage: head [-n lines | -c bytes] [file ...]")
+                print(f"{sys.argv[0]}: illegal byte count -- {sys.argv[2]}")
         else:
-            print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
+            print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
+            print("usage: head [-n lines | -c bytes] [file ...]")
+    else:
+        print(f"{sys.argv[0]}: {sys.argv[3]}: No such file or directory")
