@@ -17,11 +17,10 @@ def read_stdin():
     return stdin
 
 
-def read_file(f):
+def read_file(inputfile):
     """open file and return as a list"""
-    with open(f) as file:
-        flist = file.read().splitlines()
-    return flist
+    with open(inputfile) as file:
+        return file.read().splitlines()
 
 
 def noarg(s):
@@ -38,16 +37,15 @@ def argn(s, n):
 
 def argc(s, c):
     """-c bytes, Print bytes of each of the specified files."""
-    cc = c
     i = 0
-    while cc > 0:
-        if cc > len(s[i]):
+    while c > 0:
+        if c > len(s[i]):
             print(s[i])
             i += 1
-            cc -= len(s[i])
+            c -= len(s[i])
         else:
-            print(s[i][:cc], end="", flush=True)
-            cc = 0
+            print(s[i][:c], end="", flush=True)
+            c = 0
 
 
 if len(sys.argv) == 1:
