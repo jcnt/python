@@ -19,7 +19,7 @@ def read_stdin():
 
 def read_file(inputfile):
     """open file and return as a list"""
-    with open(inputfile) as file:
+    with open(inputfile, "r") as file:
         return file.read().splitlines()
 
 
