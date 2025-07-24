@@ -65,6 +65,7 @@ if len(sys.argv) == 2:
             argn(stdinput, int(sys.argv[1][1:]))
         else:
             print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
+            print("usage: head [-n lines | -c bytes] [file ...]")
 
 if len(sys.argv) == 3:
     # head -10 filename or head -n 10 pipe
@@ -75,6 +76,7 @@ if len(sys.argv) == 3:
             argn(finput, int(sys.argv[1][1:]))
         else:
             print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
+            print("usage: head [-n lines | -c bytes] [file ...]")
     else:
         stdinput = read_stdin()
         if sys.argv[1] == "-n":
@@ -89,6 +91,7 @@ if len(sys.argv) == 3:
                 print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
         else:
             print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
+            print("usage: head [-n lines | -c bytes] [file ...]")
 
 if len(sys.argv) == 4:
     f = sys.argv[3]
@@ -106,5 +109,6 @@ if len(sys.argv) == 4:
                 argc(finput, int(n))
             else:
                 print(f"{sys.argv[0]}: invalid option -- {sys.argv[1]}")
+                print("usage: head [-n lines | -c bytes] [file ...]")
         else:
             print(f"{sys.argv[0]}: illegal line count -- {sys.argv[2]}")
