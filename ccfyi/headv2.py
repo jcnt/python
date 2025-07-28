@@ -48,8 +48,6 @@ def argc(s, c):
             c = 0
 
 
-print(sys.argv)
-
 if "-n" in sys.argv:
     n = sys.argv[sys.argv.index("-n") + 1]
     if str.isdigit(n):
