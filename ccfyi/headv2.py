@@ -75,5 +75,11 @@ else:
         si = read_stdin()
         noarg(si)
     else:
-        if "-" in sys.argv[1]:
-            ...
+        if "-" in sys.argv[1] and str.isdigit(sys.argv[1][1:]):
+            n = int(sys.argv[1][1:])
+            if len(sys.argv) == 2:
+                si = read_stdin()
+                argn(si, n)
+            else:
+                fi = read_file(sys.argv[2])
+                argn(fi, n)
