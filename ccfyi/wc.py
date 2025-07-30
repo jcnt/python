@@ -26,7 +26,7 @@ def read_file(inputfile):
 def arg_L(s):
     """provide the longest line within the input"""
     stdin_max = max(s)
-    print(f"       {len(stdin_max.encode("utf-8"))}")
+    return len(stdin_max.encode("utf-8"))
 
 
 def arg_c(s):
@@ -34,12 +34,12 @@ def arg_c(s):
     c = 0
     for line in s:
         c += len(line)
-    print(f"     {c}")
+    return c
 
 
 def arg_l(s):
     """count the number of the lines of input"""
-    print(f"      {len(s)}")
+    return len(s)
 
 
 def arg_m(s):
@@ -47,7 +47,7 @@ def arg_m(s):
     m = 0
     for line in s:
         m += len(line.encode("utf-8"))
-    print(f"     {m}")
+    return m
 
 
 def arg_w(s):
@@ -55,31 +55,30 @@ def arg_w(s):
     w = 0
     for line in s:
         w += len(line.split())
-    print(f"      {w}")
-
-
-def noarg(s):
-    l = arg_l(s)
-    w = arg_w(s)
-    c = arg_c(s)
-    print(l, w, c)
-
-
-#    print(f"      {l} {w} {c}")
+    return w
 
 
 argd = {"-L": arg_L, "-c": arg_c, "-l": arg_l, "-m": arg_m, "-w": arg_w}
 
 if len(sys.argv) == 1:
     si = read_stdin()
-    noarg(si)
+    print(f"      {arg_l(si)}      {arg_w(si)}      {arg_c(si)}")
 elif sys.argv[1] in argd:
     if sys.argv[-1] in argd:
         si = read_stdin()
-        argd[sys.argv[-1]](si)
+        print(f"      {argd[sys.argv[-1]](si)}")
     else:
         if os.path.exists(sys.argv[-1]):
             ri = read_file(sys.argv[-1])
-            argd[sys.argv[1]](ri)
+            print(f"      {argd[sys.argv[1]](ri)}")
         else:
             print(f"{sys.argv[0]}: {sys.argv[-1]}: No such file or directory")
+elif sys.argv[1] == sys.argv[-1]:
+    if os.path.exists(sys.argv[1]):
+        ri = read_file(sys.argv[1])
+        print(
+            f"      {arg_l(ri)}      {
+                arg_w(ri)}     {arg_c(ri)} {sys.argv[1]}"
+        )
+    else:
+        print(f"{sys.argv[0]}: {sys.argv[1]}: No such file or directory")
