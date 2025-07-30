@@ -30,50 +30,56 @@ def arg_L(s):
 
 
 def arg_c(s):
-    """count the number of the characters of stdin"""
+    """count the number of the characters of input"""
     c = 0
     for line in s:
         c += len(line)
-    return c
+    print(f"     {c}")
 
 
 def arg_l(s):
-    """count the number of the lines of stdin"""
-    return len(s)
+    """count the number of the lines of input"""
+    print(f"      {len(s)}")
 
 
 def arg_m(s):
-    """count the number of the bytes of stdin"""
+    """count the number of the bytes of input"""
     m = 0
     for line in s:
         m += len(line.encode("utf-8"))
-    return m
+    print(f"     {m}")
 
 
 def arg_w(s):
-    """count the number of the words of stdin"""
+    """count the number of the words of input"""
     w = 0
     for line in s:
         w += len(line.split())
-    return w
+    print(f"      {w}")
 
 
 def noarg(s):
-    print("this is noarg")
+    l = arg_l(s)
+    w = arg_w(s)
+    c = arg_c(s)
+    print(l, w, c)
 
 
-arglist = ["-L", "-c", "-l", "-m", "-w"]
-print(sys.argv)
+#    print(f"      {l} {w} {c}")
+
+
+argd = {"-L": arg_L, "-c": arg_c, "-l": arg_l, "-m": arg_m, "-w": arg_w}
 
 if len(sys.argv) == 1:
-    noarg("test")
-elif sys.argv[1] in arglist:
-    if sys.argv[-1] == "-L":
+    si = read_stdin()
+    noarg(si)
+elif sys.argv[1] in argd:
+    if sys.argv[-1] in argd:
         si = read_stdin()
-        arg_L(si)
+        argd[sys.argv[-1]](si)
     else:
         if os.path.exists(sys.argv[-1]):
             ri = read_file(sys.argv[-1])
-            arg_L(ri)
+            argd[sys.argv[1]](ri)
         else:
             print(f"{sys.argv[0]}: {sys.argv[-1]}: No such file or directory")
