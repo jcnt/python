@@ -63,6 +63,15 @@ argd = {"-L": arg_L, "-c": arg_c, "-l": arg_l, "-m": arg_m, "-w": arg_w}
 if len(sys.argv) == 1:
     si = read_stdin()
     print(f"      {arg_l(si)}      {arg_w(si)}      {arg_c(si)}")
+elif sys.argv[1] == sys.argv[-1] and "-" not in sys.argv[1]:
+    if os.path.exists(sys.argv[1]):
+        ri = read_file(sys.argv[1])
+        print(
+            f"      {arg_l(ri)}      {
+                arg_w(ri)}     {arg_c(ri)} {sys.argv[1]}"
+        )
+    else:
+        print(f"{sys.argv[0]}: {sys.argv[1]}: No such file or directory")
 elif sys.argv[1] in argd:
     if sys.argv[-1] in argd:
         si = read_stdin()
@@ -73,12 +82,6 @@ elif sys.argv[1] in argd:
             print(f"      {argd[sys.argv[1]](ri)}")
         else:
             print(f"{sys.argv[0]}: {sys.argv[-1]}: No such file or directory")
-elif sys.argv[1] == sys.argv[-1]:
-    if os.path.exists(sys.argv[1]):
-        ri = read_file(sys.argv[1])
-        print(
-            f"      {arg_l(ri)}      {
-                arg_w(ri)}     {arg_c(ri)} {sys.argv[1]}"
-        )
-    else:
-        print(f"{sys.argv[0]}: {sys.argv[1]}: No such file or directory")
+else:
+    print(f"{sys.argv[0]}: illegal option -- {sys.argv[1][1:]}")
+    print(f"usage: {sys.argv[0]} [-Lclmw] [file ...]")

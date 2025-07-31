@@ -1,4 +1,6 @@
 """
+first try, looks and feels horrible
+
 CodingChallengesFYI https://github.com/CodingChallengesFYI
 
 head.py
