@@ -1,8 +1,8 @@
 """
 CodingChallengesFYI https://github.com/CodingChallengesFYI
 
-wc.py
-write a program that does the same as the unix "wc"
+grep.py
+write a program that does the same as the unix "grep"
 """
 
 import sys
@@ -50,3 +50,14 @@ def argo():
 def argv():
     """Selected lines are those not matching any of the specified patterns."""
     ...
+
+
+def noarg(s, p):
+    """selecting lines that match one or more patterns."""
+    for line in s:
+        if p in line:
+            print(line)
+
+
+fi = read_file(sys.argv[2])
+noarg(fi, sys.argv[1])
