@@ -32,9 +32,13 @@ def argB():
     ...
 
 
-def argc():
+def argc(s, p):
     """Print num lines of leading and trailing context surrounding each match."""
-    ...
+    n = 0
+    for line in s:
+        if p in line:
+            n += 1
+    print(n)
 
 
 def argi():
@@ -60,4 +64,4 @@ def noarg(s, p):
 
 
 fi = read_file(sys.argv[2])
-noarg(fi, sys.argv[1])
+argc(fi, sys.argv[1])
