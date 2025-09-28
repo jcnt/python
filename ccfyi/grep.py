@@ -41,19 +41,25 @@ def argc(s, p):
     print(n)
 
 
-def argi():
+def argi(s, p):
     """Perform case insensitive matching.  By default, grep is case sensitive."""
-    ...
+    for line in s:
+        if p.lower() in line.lower():
+            print(line)
 
 
-def argo():
+def argo(s, p):
     """Prints only the matching part of the lines."""
-    ...
+    for line in s:
+        if p in line:
+            print(p)
 
 
-def argv():
+def argv(s, p):
     """Selected lines are those not matching any of the specified patterns."""
-    ...
+    for line in s:
+        if p not in line:
+            print(line)
 
 
 def noarg(s, p):
@@ -63,5 +69,6 @@ def noarg(s, p):
             print(line)
 
 
-fi = read_file(sys.argv[2])
-argc(fi, sys.argv[1])
+print(sys.argv)
+fi = read_file(sys.argv[len(sys.argv) - 1])
+argo(fi, sys.argv[1])
