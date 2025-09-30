@@ -5,6 +5,7 @@ grep.py
 write a program that does the same as the unix "grep"
 """
 
+import os
 import sys
 
 
@@ -69,6 +70,41 @@ def noarg(s, p):
             print(line)
 
 
+argd = {
+    "-c": argc,
+    "-i": argi,
+    "-o": argo,
+    "-v": argv,
+}
 print(sys.argv)
-fi = read_file(sys.argv[len(sys.argv) - 1])
-argo(fi, sys.argv[1])
+
+if len(sys.argv) == 2 and "-" not in sys.argv[-1]:
+    # grep pattern stdin
+    si = read_stdin()
+    noarg(si, sys.argv[1])
+elif len(sys.argv) == 4 and os.path.exists(sys.argv[-1]):
+    # grep -c pattern file
+    fi = read_file(sys.argv[-1])
+    argd[sys.argv[1]](fi, sys.argv[2])
+elif len(sys.argv) == 3:
+    if os.path.exists(sys.argv[-1]):
+        # grep pattern file
+        fi = read_file(sys.argv[-1])
+        noarg(fi, sys.argv[1])
+    elif "-" in sys.argv[1]:
+        print("grep -c pattern stdin")
+        si = read_stdin()
+        argd[sys.argv[1]](si, sys.argv[2])
+    else:
+        print("Usage: grep [OPTION]... PATTERNS [FILE]...")
+        print("Try 'grep --help' for more information.")
+else:
+    print("Usage: grep [OPTION]... PATTERNS [FILE]...")
+    print("Try 'grep --help' for more information.")
+
+"""
+grep pattern stdin -> len 2 -> 1. 
+grep pattern file -> len 3 + -1 path exist
+grep -c pattern stdin -> len 3 
+grep -c pattern file -> len 4 -> 2. 
+"""
