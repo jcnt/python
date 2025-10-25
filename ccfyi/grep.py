@@ -102,6 +102,7 @@ else:
     print("Usage: grep [OPTION]... PATTERNS [FILE]...")
     print("Try 'grep --help' for more information.")
 
+
 """
 grep pattern stdin -> len 2 -> 1. 
 grep pattern file -> len 3 + -1 path exist
