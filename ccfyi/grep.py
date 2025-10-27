@@ -98,6 +98,7 @@ elif len(sys.argv) == 3:
     else:
         print("Usage: grep [OPTION]... PATTERNS [FILE]...")
         print("Try 'grep --help' for more information.")
+
 else:
     print("Usage: grep [OPTION]... PATTERNS [FILE]...")
     print("Try 'grep --help' for more information.")
