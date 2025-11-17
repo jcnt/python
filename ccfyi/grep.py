@@ -23,9 +23,12 @@ def read_file(inputfile):
         return file.read().splitlines()
 
 
-def argA():
+def argA(s, p, a):
     """Print num lines of trailing context after each match."""
-    ...
+    for line in s:
+        if p in line:
+            i = s.index(line)
+            print(i)
 
 
 def argB():
@@ -75,6 +78,7 @@ argd = {
     "-i": argi,
     "-o": argo,
     "-v": argv,
+    "-A": argA,
 }
 print(sys.argv)
 
@@ -82,10 +86,15 @@ if len(sys.argv) == 2 and "-" not in sys.argv[-1]:
     # grep pattern stdin
     si = read_stdin()
     noarg(si, sys.argv[1])
-elif len(sys.argv) == 4 and os.path.exists(sys.argv[-1]):
-    # grep -c pattern file
-    fi = read_file(sys.argv[-1])
-    argd[sys.argv[1]](fi, sys.argv[2])
+elif len(sys.argv) == 4:
+    if os.path.exists(sys.argv[-1]):
+        # grep -c pattern file
+        fi = read_file(sys.argv[-1])
+        argd[sys.argv[1]](fi, sys.argv[2])
+    elif sys.argv[1] == "-A" or sys.argv[1] == "-B":
+        # grep -A x pattern stdin
+        si = read_stdin()
+        argd[sys.argv[1]](si, sys.argv[2], sys.argv[3])
 elif len(sys.argv) == 3:
     if os.path.exists(sys.argv[-1]):
         # grep pattern file
@@ -98,7 +107,6 @@ elif len(sys.argv) == 3:
     else:
         print("Usage: grep [OPTION]... PATTERNS [FILE]...")
         print("Try 'grep --help' for more information.")
-
 else:
     print("Usage: grep [OPTION]... PATTERNS [FILE]...")
     print("Try 'grep --help' for more information.")
