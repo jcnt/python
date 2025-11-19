@@ -25,13 +25,20 @@ def read_file(inputfile):
 
 def argA(s, p, a):
     """Print num lines of trailing context after each match."""
+    first = 0
     for line in s:
         if p in line:
+            if first > 0:
+                print("--")
+            first += 1
             i = s.index(line)
-            print(i)
+            f = i + int(a)
+            while i <= f:
+                print(s[i])
+                i += 1
 
 
-def argB():
+def argB(s, p, a):
     """Print num lines of leading context before each match."""
     ...
 
@@ -94,7 +101,7 @@ elif len(sys.argv) == 4:
     elif sys.argv[1] == "-A" or sys.argv[1] == "-B":
         # grep -A x pattern stdin
         si = read_stdin()
-        argd[sys.argv[1]](si, sys.argv[2], sys.argv[3])
+        argd[sys.argv[1]](si, sys.argv[3], sys.argv[2])
 elif len(sys.argv) == 3:
     if os.path.exists(sys.argv[-1]):
         # grep pattern file
