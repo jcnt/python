@@ -40,7 +40,17 @@ def argA(s, p, a):
 
 def argB(s, p, a):
     """Print num lines of leading context before each match."""
-    ...
+    first = 0
+    for line in s:
+        if p in line:
+            if first > 0:
+                print("--")
+            first += 1
+            i = s.index(line)
+            b = i - int(a)
+            while b <= i:
+                print(s[b])
+                b += 1
 
 
 def argc(s, p):
@@ -86,6 +96,7 @@ argd = {
     "-o": argo,
     "-v": argv,
     "-A": argA,
+    "-B": argB,
 }
 print(sys.argv)
 
