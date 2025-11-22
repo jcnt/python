@@ -110,7 +110,7 @@ elif len(sys.argv) == 4:
         fi = read_file(sys.argv[-1])
         argd[sys.argv[1]](fi, sys.argv[2])
     elif sys.argv[1] == "-A" or sys.argv[1] == "-B":
-        # grep -A x pattern stdin
+        # grep -A|-B x pattern stdin
         si = read_stdin()
         argd[sys.argv[1]](si, sys.argv[3], sys.argv[2])
 elif len(sys.argv) == 3:
@@ -125,6 +125,10 @@ elif len(sys.argv) == 3:
     else:
         print("Usage: grep [OPTION]... PATTERNS [FILE]...")
         print("Try 'grep --help' for more information.")
+elif len(sys.argv) == 5:
+    if sys.argv[1] == "-A" or sys.argv[1] == "-B":
+        fi = read_file(sys.argv[-1])
+        argd[sys.argv[1]](fi, sys.argv[3], sys.argv[2])
 else:
     print("Usage: grep [OPTION]... PATTERNS [FILE]...")
     print("Try 'grep --help' for more information.")
