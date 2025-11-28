@@ -5,7 +5,6 @@ head.py
 write a program that does the same as the unix "head"
 """
 
-import os
 import sys
 
 
