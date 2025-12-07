@@ -10,5 +10,3 @@ if type(d.get("b")) == int:
     d["b"] += 1
 else:
     d["b"] = 1
-
-print(d)
