@@ -73,6 +73,6 @@ else:
 """
 len 1 -> noarg stdin
 len 2 -> noarg file, arg + stdin
-len 3 -> arg file 
+len 3 -> arg file
 
 """
