@@ -8,6 +8,6 @@ with open("example", "r") as file:
 
 
 for ranges in f:
-    curr = ranges.split("-")
-    l = [item for item in range(int(curr[0]), int(curr[1]) + 1)]
+    cr = ranges.split("-")
+    l = list(range(int(cr[0]), int(cr[1]) + 1))
     print(l)
