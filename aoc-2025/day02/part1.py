@@ -10,4 +10,6 @@ with open("example", "r") as file:
 for ranges in f:
     cr = ranges.split("-")
     l = list(range(int(cr[0]), int(cr[1]) + 1))
-    print(l)
+    for code in l:
+        if len(code) % 2 == 0:
+            print(code)
