@@ -22,4 +22,6 @@ for ranges in f:
             if lcode % i == 0:
                 tl = []
                 print(code, lcode, i, "yes")
+                for j in range(0, lcode, (int(lcode / i) + 1)):
+                    print(j)
 print(counter)
