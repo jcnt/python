@@ -6,7 +6,7 @@ Advent of Code, 2025. Day 2, part 1.
 with open("example", "r") as file:
     f = file.read().split(",")
 
-counter = 0
+counter = []
 
 for ranges in f:
     cr = ranges.split("-")
@@ -17,11 +17,17 @@ for ranges in f:
     print(l, maxlen)
 
     for code in l:
+        scode = str(code)
         for i in range(2, int(maxlen / 2) + 2):
-            lcode = len(str(code))
+            lcode = len(scode)
             if lcode % i == 0:
                 tl = []
                 print(code, lcode, i, "yes")
-                for j in range(0, lcode, (int(lcode / i) + 1)):
-                    print(j)
+                for j in range(0, lcode, (int(lcode / i))):
+                    tl.append(scode[j : j + int(lcode / i)])
+                print(tl)
+                for k in range(len(tl)):
+                    if tl[0] == tl[k]:
+                        print("yes")
+
 print(counter)
