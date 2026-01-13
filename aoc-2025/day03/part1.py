@@ -8,3 +8,11 @@ with open("example", "r") as file:
 
 f.remove("")
 print(f)
+
+"""
+
+get max on 0:-2
+get index of max
+get max on index:
+
+"""
