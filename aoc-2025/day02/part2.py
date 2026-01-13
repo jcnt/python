@@ -3,31 +3,41 @@ Advent of Code, 2025. Day 2, part 1.
 
 """
 
-with open("example", "r") as file:
+with open("input", "r") as file:
     f = file.read().split(",")
 
 counter = []
+sum = 0
 
 for ranges in f:
     cr = ranges.split("-")
-    l = list(range(int(cr[0]), int(cr[1]) + 1))
+    olist = list(range(int(cr[0]), int(cr[1]) + 1))
 
+    #    print(olist)
     maxlen = len(cr[1])
 
-    print(l, maxlen)
-
-    for code in l:
+    for code in olist:
         scode = str(code)
-        for i in range(2, int(maxlen / 2) + 2):
-            lcode = len(scode)
+        lcode = len(scode)
+        for i in range(2, lcode + 1):
+            #            print(code, i)
             if lcode % i == 0:
                 tl = []
-                print(code, lcode, i, "yes")
+                #                print(code, lcode, i, "yes")
                 for j in range(0, lcode, (int(lcode / i))):
                     tl.append(scode[j : j + int(lcode / i)])
-                print(tl)
-                for k in range(len(tl)):
-                    if tl[0] == tl[k]:
-                        print("yes")
+                #        print(tl)
+                for k in range(0, len(tl)):
+                    # counts how many times the 0. element in the list if it's the same
+                    # as the length of the list => all elements are the same
+                    res = tl.count(tl[0]) == len(tl)
+                    #        print(tl, res)
+                    if res == True:
+                        counter.append("".join(tl))
 
-print(counter)
+# print(set(counter))
+
+for s in set(counter):
+    sum += int(s)
+
+print(sum)
