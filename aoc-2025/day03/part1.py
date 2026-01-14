@@ -1,18 +1,22 @@
 """
-Advent of Code, 2025. Day 2, part 1.
+Advent of Code, 2025. Day 3, part 1.
 
 """
 
-with open("example", "r") as file:
+with open("input", "r") as file:
     f = file.read().split("\n")
 
 f.remove("")
-print(f)
+result = 0
 
-"""
+for i in f:
+    clist = list(i)
+    #    print(clist)
+    first = max(clist[0:-1])
+    #    print(first)
+    ifirst = clist.index(first)
+    second = max(clist[ifirst + 1 :])
+    #    print(second)
+    result += int(first) * 10 + int(second)
 
-get max on 0:-2
-get index of max
-get max on index:
-
-"""
+print(result)
