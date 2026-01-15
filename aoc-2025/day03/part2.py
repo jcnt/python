@@ -9,8 +9,6 @@ with open("input", "r") as file:
 f.remove("")
 result = 0
 
-result = 0
-
 for i in f:
     c_index = 0
     sub_result = 0
