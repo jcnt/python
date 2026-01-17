@@ -11,10 +11,8 @@ print(f)
 
 result = 0
 
-print("len/f", len(f))
 
 for row in range(len(f)):
-    print("lenfrow", len(f[row]))
     for item in range(len(f[row])):
         print(row, item)
         print(f[row][item])
