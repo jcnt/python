@@ -32,5 +32,7 @@ for row in range(len(f)):
             print("counter", counter, "\n")
             if counter < 4:
                 result += 1
+                f[i][j] = "x"
 
 print("final result = ", result)
+print(f)
