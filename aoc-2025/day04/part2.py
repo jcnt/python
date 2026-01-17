@@ -1,5 +1,5 @@
 """
-Advent of Code, 2025. Day 4, part 1.
+Advent of Code, 2025. Day 4, part 2.
 
 """
 
