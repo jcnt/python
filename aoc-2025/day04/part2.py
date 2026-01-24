@@ -5,7 +5,6 @@ Advent of Code, 2025. Day 4, part 2.
 
 with open("input", "r") as file:
     f = file.read().split("\n")
-    g = file.readlines()
 f.remove("")
 
 result = 0
