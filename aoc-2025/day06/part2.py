@@ -1,20 +1,21 @@
 """
-Advent of Code, 2025. Day 6, part 1.
+Advent of Code, 2025. Day 6, part 2.
 
 """
 
 mline = []
 tline = []
-counter = 1
+fline = []
+pcount = 0
+mcount = 1
 
-with open("example", "r") as file:
+with open("input", "r") as file:
     source = file.read().split("\n")
 
 source.remove("")
 
 for i in source:
     print(i)
-print("---------------")
 
 for char in range(len(source[0]) - 1, -1, -1):
     num = ""
@@ -30,3 +31,22 @@ for char in range(len(source[0]) - 1, -1, -1):
         mline.append(op)
 
 print(mline)
+
+for i in mline:
+    if i != "+" and i != "*":
+        tline.append(i)
+    else:
+        for j in tline:
+            if i == "+":
+                pcount += int(j)
+            if i == "*":
+                mcount *= int(j)
+        if mcount != 1:
+            fline.append(mcount)
+            mcount = 1
+        if pcount != 0:
+            fline.append(pcount)
+            pcount = 0
+        tline = []
+
+print("final solution", sum(fline))
