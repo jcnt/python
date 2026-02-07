@@ -8,6 +8,10 @@ import math
 source = []
 dist_db = {}
 conn_pairs = [[0, 0]]
+a_loc = 0
+b_loc = 0
+exists = False
+ncirc = 0
 
 with open("example", "r") as file:
     for line in file:
@@ -34,14 +38,34 @@ sdict = sorted(dist_db.items(), key=lambda item: item[1])
 print(sdict)
 
 for k in sdict:
-    a = int(k[0].split(",")[0])
-    b = int(k[0].split(",")[1])
-    print(a, b)
-    for i in range(len(conn_pairs)):
-        if a in conn_pairs[i]:
-            conn_pairs[i].append(b)
-        if b in conn_pairs[i]:
-            conn_pairs[i].append(a)
+    if ncirc < 10:
+        a = int(k[0].split(",")[0])
+        b = int(k[0].split(",")[1])
+        print(f"{ncirc} is {a} and {b}")
+        ncirc += 1
+        for i in range(len(conn_pairs)):
+            if a in conn_pairs[i] and b not in conn_pairs[i]:
+                a_loc = i
+            elif b in conn_pairs[i] and a not in conn_pairs[i]:
+                b_loc = i
+            elif a in conn_pairs[i] and b in conn_pairs[i]:
+                exists = True
+        if a_loc != 0:
+            conn_pairs[a_loc].append(b)
+            print("appended", b, "into", conn_pairs[a_loc], "from", a, b)
+            a_loc = 0
+        elif b_loc != 0:
+            conn_pairs[b_loc].append(a)
+            print("appended", a, "into", conn_pairs[b_loc], "from", a, b)
+            b_loc = 0
         else:
-            conn_pairs.append([a, b])
-    print(conn_pairs)
+            if not exists:
+                conn_pairs.append([a, b])
+                print("new pair", a, b)
+            else:
+                exists = False
+
+conn_pairs.remove([0, 0])
+print(conn_pairs)
+for i in conn_pairs:
+    print(set(i))
