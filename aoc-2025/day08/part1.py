@@ -80,3 +80,9 @@ print(counter[0] * counter[1] * counter[2])
 
 for c in conn_pairs:
     print(set(c))
+
+"""
+next step: we need to stop at that point when we have all 
+coordinates in any of the lists.
+
+"""
