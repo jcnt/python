@@ -14,7 +14,7 @@ b_loc = 0
 exists = False
 ncirc = 0
 
-with open("example", "r") as file:
+with open("input", "r") as file:
     for line in file:
         source.append(line.strip().split(","))
 
@@ -27,8 +27,8 @@ def get_distance(a, b):
     )
 
 
-for num in range(len(source)):
-    print(num, source[num])
+# for num in range(len(source)):
+#    print(num, source[num])
 
 for i in range(0, len(source)):
     for j in range(i + 1, len(source)):
@@ -39,50 +39,42 @@ sdict = sorted(dist_db.items(), key=lambda item: item[1])
 # print(sdict)
 
 for k in sdict:
-    #    if ncirc < 10:
     a = int(k[0].split(",")[0])
     b = int(k[0].split(",")[1])
     #    print(f"{ncirc} is {a} and {b}")
     ncirc += 1
     for i in range(len(conn_pairs)):
-        if a in conn_pairs[i] and b not in conn_pairs[i]:
-            a_loc = i
-        elif b in conn_pairs[i] and a not in conn_pairs[i]:
-            b_loc = i
-        elif a in conn_pairs[i] and b in conn_pairs[i]:
-            exists = True
-    #            ncirc -= 1
-    if a_loc != 0:
+        for j in conn_pairs[i]:
+            if a == j:
+                a_loc = i
+            elif b == j:
+                b_loc = i
+    if a_loc != 0 and b_loc == 0:
         conn_pairs[a_loc].append(b)
+        counter.append(b)
         #        print("appended", b, "into", conn_pairs[a_loc], "from", a, b)
         a_loc = 0
-    elif b_loc != 0:
+        exists = True
+    elif b_loc != 0 and a_loc == 0:
         conn_pairs[b_loc].append(a)
+        counter.append(a)
         #        print("appended", a, "into", conn_pairs[b_loc], "from", a, b)
         b_loc = 0
+        exists = True
+    elif b_loc != 0 and a_loc != 0:
+        exists = True
+        a_loc = 0
+        b_loc = 0
+    if not exists:
+        conn_pairs.append([a, b])
+        counter.append(a)
+        counter.append(b)
+    #        print("new pair", a, b)
     else:
-        if not exists:
-            conn_pairs.append([a, b])
-        #            print("new pair", a, b)
-        else:
-            exists = False
+        exists = False
 
 conn_pairs.remove([0, 0])
+conn_pairs.sort(key=len, reverse=True)
 print(conn_pairs)
-for i in conn_pairs:
-    #    print(set(i))
-    counter.append(len(set(i)))
-
-counter.sort(reverse=True)
-# print(counter)
-
-print(counter[0] * counter[1] * counter[2])
-
-for c in conn_pairs:
-    print(set(c))
-
-"""
-next step: we need to stop at that point when we have all 
-coordinates in any of the lists.
-
-"""
+print(len(conn_pairs[0]) * len(conn_pairs[1]) * len(conn_pairs[2]))
+print(len(counter))
