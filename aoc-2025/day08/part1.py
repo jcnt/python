@@ -41,7 +41,7 @@ sdict = sorted(dist_db.items(), key=lambda item: item[1])
 for k in sdict:
     a = int(k[0].split(",")[0])
     b = int(k[0].split(",")[1])
-    #    print(f"{ncirc} is {a} and {b}")
+    print(f"{ncirc} is {a} and {b}")
     ncirc += 1
     for i in range(len(conn_pairs)):
         for j in conn_pairs[i]:
@@ -52,29 +52,38 @@ for k in sdict:
     if a_loc != 0 and b_loc == 0:
         conn_pairs[a_loc].append(b)
         counter.append(b)
-        #        print("appended", b, "into", conn_pairs[a_loc], "from", a, b)
+        print("appended", b, "into", conn_pairs[a_loc], "from", a, b)
         a_loc = 0
         exists = True
     elif b_loc != 0 and a_loc == 0:
         conn_pairs[b_loc].append(a)
         counter.append(a)
-        #        print("appended", a, "into", conn_pairs[b_loc], "from", a, b)
+        print("appended", a, "into", conn_pairs[b_loc], "from", a, b)
         b_loc = 0
         exists = True
     elif b_loc != 0 and a_loc != 0:
         exists = True
+        print(f"it exists and a in {a_loc} b in {b_loc}")
+        if a_loc != b_loc:
+            for subitem in conn_pairs[a_loc]:
+                print(f"subitem is {subitem}")
+                conn_pairs[b_loc].append(subitem)
+                print(f"appended list is now {conn_pairs[b_loc]}")
+            conn_pairs.pop(a_loc)
+            print(f"appended the items of {a_loc} to {b_loc}")
         a_loc = 0
         b_loc = 0
     if not exists:
         conn_pairs.append([a, b])
         counter.append(a)
         counter.append(b)
-    #        print("new pair", a, b)
+        print("new pair", a, b)
     else:
         exists = False
+    if ncirc == 1000:
+        break
 
 conn_pairs.remove([0, 0])
 conn_pairs.sort(key=len, reverse=True)
 print(conn_pairs)
 print(len(conn_pairs[0]) * len(conn_pairs[1]) * len(conn_pairs[2]))
-print(len(counter))
